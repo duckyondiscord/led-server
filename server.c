@@ -41,8 +41,10 @@ int main(int argc, char* argv[])
     servaddr.sin_port = htons(port);
 
     // Binding newly created socket to given IP and port
-    if (bind(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0)
-        exit(0);
+    if (bind(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0) {
+        printf("Could not bind to address/port\n");
+        exit(EXIT_FAILURE);
+    }
     // Now server is ready to listen and verification
 
     // Register signal handler for SIGINT
